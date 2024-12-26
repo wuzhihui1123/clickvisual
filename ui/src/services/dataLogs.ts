@@ -1,5 +1,6 @@
 import { TimeBaseType } from "@/services/systemSetting";
 import { request } from "@umijs/max";
+import { message } from "antd";
 export interface QueryLogsProps {
   st: number;
   et: number;
@@ -263,6 +264,12 @@ export default {
     params: QueryLogsProps,
     cancelToken: any
   ) {
+    if (params.query && params.et && params.st && params.et - params.st > 3600 * 2) {
+      if (params.query.indexOf("6=6 and") < 0) {
+        message.error("带有查询条件的情况下，查询时间段不允许超过2小时。如果需要请联系 @吴志辉", 5);
+        return;
+      }
+    }
     return request<API.Res<HighChartsResponse>>(
       process.env.PUBLIC_PATH + `api/v1/tables/${tableId}/charts`,
       {
@@ -276,6 +283,12 @@ export default {
 
   // Get log information
   async getLogs(tableId: number, params: QueryLogsProps, cancelToken: any) {
+    if (params.query && params.et && params.st && params.et - params.st > 3600 * 2) {
+      if (params.query.indexOf("6=6 and") < 0) {
+        message.error("带有查询条件的情况下，查询时间段不允许超过2小时。如果需要请联系 @吴志辉", 5);
+        return;
+      }
+    }
     return request<API.Res<LogsResponse>>(
       process.env.PUBLIC_PATH + `api/v1/tables/${tableId}/logs`,
       {
