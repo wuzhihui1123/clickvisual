@@ -264,10 +264,20 @@ export default {
     params: QueryLogsProps,
     cancelToken: any
   ) {
-    if (params.query && params.et && params.st && params.et - params.st > 3600 * 2) {
-      if (params.query.indexOf("6=6 and") < 0) {
-        message.error("带有查询条件的情况下，查询时间段不允许超过2小时。如果需要请联系 @吴志辉", 5);
-        return;
+    if (params.query && params.et && params.st) {
+      let queryLower = params.query.toLowerCase()
+      // 留个口子， 如果包含查询魔数，则不做查询时间段限制
+      if (queryLower.indexOf("6=6 and") < 0) {
+        let maxQueryRange = 3600 * 24 + 300;
+        let errorMsg = "包含查询条件的情况下，查询时间段不允许超过24小时。";
+        if (queryLower.indexOf("like") > 0) {
+          maxQueryRange = 3600 * 2 + 300;
+          errorMsg = "查询条件中包含 like 的情况下，查询时间段不允许超过2小时。";
+        }
+        if(params.et - params.st > maxQueryRange) {
+          message.error(errorMsg, 5);
+          return;
+        }
       }
     }
     return request<API.Res<HighChartsResponse>>(
@@ -283,10 +293,20 @@ export default {
 
   // Get log information
   async getLogs(tableId: number, params: QueryLogsProps, cancelToken: any) {
-    if (params.query && params.et && params.st && params.et - params.st > 3600 * 2) {
-      if (params.query.indexOf("6=6 and") < 0) {
-        message.error("带有查询条件的情况下，查询时间段不允许超过2小时。如果需要请联系 @吴志辉", 5);
-        return;
+    if (params.query && params.et && params.st) {
+      let queryLower = params.query.toLowerCase()
+      // 留个口子， 如果包含查询魔数，则不做查询时间段限制
+      if (queryLower.indexOf("6=6 and") < 0) {
+        let maxQueryRange = 3600 * 24 + 300;
+        let errorMsg = "包含查询条件的情况下，查询时间段不允许超过24小时。";
+        if (queryLower.indexOf("like") > 0) {
+          maxQueryRange = 3600 * 2 + 300;
+          errorMsg = "查询条件中包含 like 的情况下，查询时间段不允许超过2小时。";
+        }
+        if(params.et - params.st > maxQueryRange) {
+          message.error(errorMsg, 5);
+          return;
+        }
       }
     }
     return request<API.Res<LogsResponse>>(
