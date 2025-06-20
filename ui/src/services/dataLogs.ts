@@ -268,11 +268,11 @@ export default {
       let queryLower = params.query.toLowerCase()
       // 留个口子， 如果包含查询魔数，则不做查询时间段限制
       if (queryLower.indexOf("6=6 and") < 0) {
-        let maxQueryRange = 3600 * 24 + 300;
-        let errorMsg = "包含查询条件的情况下，查询时间段不允许超过24小时。";
+        let maxQueryRange = 3600 * 24 * 15 + 300;
+        let errorMsg = "包含查询条件的情况下，查询时间段不允许超过15天。";
         if (queryLower.indexOf("like") > 0) {
-          maxQueryRange = 3600 * 2 + 300;
-          errorMsg = "查询条件中包含 like 的情况下，查询时间段不允许超过2小时。";
+          maxQueryRange = 3600 * 8 + 300;
+          errorMsg = "查询条件中包含 like 的情况下，查询时间段不允许超过8小时。";
         }
         if(params.et - params.st > maxQueryRange) {
           message.error(errorMsg, 5);
@@ -297,11 +297,11 @@ export default {
       let queryLower = params.query.toLowerCase()
       // 留个口子， 如果包含查询魔数，则不做查询时间段限制
       if (queryLower.indexOf("6=6 and") < 0) {
-        let maxQueryRange = 3600 * 24 + 300;
-        let errorMsg = "包含查询条件的情况下，查询时间段不允许超过24小时。";
+        let maxQueryRange = 3600 * 24 * 15 + 300;
+        let errorMsg = "包含查询条件的情况下，查询时间段不允许超过15天。";
         if (queryLower.indexOf("like") > 0) {
-          maxQueryRange = 3600 * 2 + 300;
-          errorMsg = "查询条件中包含 like 的情况下，查询时间段不允许超过2小时。";
+          maxQueryRange = 3600 * 4 + 300;
+          errorMsg = "查询条件中包含 like 的情况下，查询时间段不允许超过4小时。";
         }
         if(params.et - params.st > maxQueryRange) {
           message.error(errorMsg, 5);
