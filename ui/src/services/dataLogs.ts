@@ -300,8 +300,8 @@ export default {
         let maxQueryRange = 3600 * 24 * 15 + 300;
         let errorMsg = "包含查询条件的情况下，查询时间段不允许超过15天。";
         if (queryLower.indexOf("like") > 0) {
-          maxQueryRange = 3600 * 4 + 300;
-          errorMsg = "查询条件中包含 like 的情况下，查询时间段不允许超过4小时。";
+          maxQueryRange = 3600 * 8 + 300;
+          errorMsg = "查询条件中包含 like 的情况下，查询时间段不允许超过8小时。";
         }
         if(params.et - params.st > maxQueryRange) {
           message.error(errorMsg, 5);
