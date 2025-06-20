@@ -42,7 +42,7 @@ var _hmt = _hmt || [];
         if(NODE_ENV === 'production'){
             return {
                 output: {
-                    publicPath: 'https://cdn.gocn.vip/clickvisual/'
+                    publicPath: 'https://clickvisual.net/clickvisual/'
                 },
                 resolve: {
                     //配置路径别名
@@ -120,8 +120,8 @@ var _hmt = _hmt || [];
                             title: "快速开始",
                             collapsable: false, // 可选的, 默认值是 true,
                             children: [
-                                "01quickstart/changelogs",
                                 "/zh/clickvisual/",
+                                "01quickstart/changelogs",
                                 "01quickstart/roadmap",
                                 "01quickstart/experience-clickvisual-with-docker-compose",
                                 "01quickstart/qa",

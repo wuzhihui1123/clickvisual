@@ -41,8 +41,7 @@ node_modules/
 .umi-production/
 
 ### necessary file
-!api/internal/ui/dist/cv.png
-api/internal/ui/dist/
+dist/
 
 ### file
 package-lock.json
@@ -55,3 +54,6 @@ api/docs/index.html
 ossutil64
 ossutil64.1
 obsutil_linux_amd64*/
+
+dump.rdb
+test/
